@@ -189,9 +189,10 @@ def simulate_alpha():
           alpha_setting_data = run_wqb.set_alpha(regular=i['regular'],universe=i['universe'],
                                                  delay=i['delay'],decay=i['decay'],truncation=i['truncation'],neutralization=i['neutralization'])
           simulate_start_time = current_time
+          alpha = alpha_setting_data
           resp_alpha = asyncio.run(
             wqbs.simulate(
-              alpha_setting_data,  # `alpha` or `multi_alpha`
+              alpha,  # `alpha` or `multi_alpha`
               on_nolocation=lambda vars: print('nolocation',vars['target'], vars['resp'], sep='\n'),
               on_start=lambda vars: print('start',alpha,vars['url']),
               on_finish=lambda vars: print('finish',vars['resp']),
