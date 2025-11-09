@@ -150,3 +150,4 @@ def set_alpha(regular='liabilities/assets',universe='TOP3000',decay=4,
         'regular': regular,
     }
     return alpha_setting
+  
