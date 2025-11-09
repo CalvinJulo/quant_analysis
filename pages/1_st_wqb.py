@@ -25,14 +25,23 @@ import time
 
 st.info('This is the basic intro of wqb\n\n-- connect to wqb\n\n-- simulate, filter, check')
 
-
 current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 st.write('Current time:',current_time)
 
-# Username and password from MongoDB Altas
+
+sessionState_List = ['sess_username','sess_password','sess_alpha_id', 'sess_alpha_data', 'sess_multi_alpha_data',
+                     'sess_dataset_id', 'sess_dataset_data', 'sess_multi_dataset_data','sess_field_id', 
+                     'sess_field_data', 'sess_multi_field_data']
+
+for i in sessionState_List:
+    if i not in st.session_state:
+        st.session_state[i] = ''
+
+
+# Username and password to WQB
 with st.sidebar:
-    username = st.text_input('username', 'xx')
-    password = st.text_input('password', 'xx',type='password')
+    st.session_state['sess_username'] = st.text_input('username', 'xx')
+    st.session_state['sess_password'] = st.text_input('password', 'xx',type='password')
 
 
 @st.cache_resource
@@ -40,8 +49,8 @@ def get_wqb(username, password):
   wqbs = run_wqb.log_wqbs(username, password)
   return wqbs
 
+wqbs =get_wqb(st.session_state['sess_username'], st.session_state['sess_password'])
 
-wqbs =get_wqb(username, password)
 
 alpha_id = st.text_input('Alpha ID', '')
 alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
