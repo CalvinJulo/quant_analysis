@@ -32,8 +32,7 @@ def get_alpha_data(wqbs,alpha_id):
 
 
 
-def filter_alphas(wqbs,status='UNSUBMITTED',region='USA',universe='TOP3000',
-                  from_date='2025-01-02',to_date='2030-01-02'):
+def filter_alphas(wqbs,status='UNSUBMITTED',region='USA',universe='TOP3000',from_date='2025-01-02',to_date='2030-01-02',check='off'):
     if check=='on':
         sharpe=FilterRange.from_str('[1.58, inf)')
         fitness = FilterRange.from_str('[1, inf)')
