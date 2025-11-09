@@ -101,7 +101,7 @@ def check_field():
       column_config={
         'region':st.column_config.SelectboxColumn("region",options=["USA"]),
         'delay': st.column_config.SelectboxColumn("delay", options=[1,0]),
-        'universe': st.column_config.SelectboxColumn("universe", options=['TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
+        'universe': st.column_config.SelectboxColumn("universe", options=['TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500'])}
         )
     filter_field_attr_dict=filter_field_attr_df.to_dict('records')[0]
     get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
