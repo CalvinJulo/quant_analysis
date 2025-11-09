@@ -163,7 +163,7 @@ def simulate_alpha():
   set_alpha_attr_df =st.data_editor(
     pd.DataFrame(set_alpha_attr_orignal),
     key="set_alpha_attr_editor",
-    hide_index=True,
+    # hide_index=True,
     use_container_width=True,
     column_config={
         'region':st.column_config.SelectboxColumn("region",options=["USA"]),
