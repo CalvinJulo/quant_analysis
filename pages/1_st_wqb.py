@@ -91,7 +91,22 @@ def check_field():
     st.write(pd.DataFrame(dataset_id_data['data']))
     st.write(pd.DataFrame(dataset_id_data['researchPapers']))
   elif show_dataset_data =="dataset_data_arrange":
-    get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,dataset_id=dataset_id)
+    filter_field_attr_orignal =[{'region':'USA','delay':1,'universe':'TOP3000','search':None,'dataset_id':None}]
+    filter_field_attr_df =st.data_editor(
+      pd.DataFrame(filter_field_attr_orignal),
+      key="filter_field_attr_editor",
+      hide_index=True,
+      use_container_width=True,
+      num_rows="fixed",
+      column_config={
+        'region':st.column_config.SelectboxColumn("region",options=["USA"]),
+        'delay': st.column_config.SelectboxColumn("delay", options=[1,0]),
+        'universe': st.column_config.SelectboxColumn("universe", options=['TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
+        )
+    filter_field_attr_dict=filter_field_attr_df.to_dict('records')[0]
+    get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
+                                                      universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
+                                                      dataset_id=filter_field_attr_dict['dataset_id'])
     st.write('count:', len(get_multi_field_data))
     st.dataframe(pd.DataFrame(get_multi_field_data))
     
