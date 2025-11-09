@@ -158,11 +158,11 @@ def check_field():
 
 def simulate_alpha():
   st.write('Simulate Alpha')
-  set_aphal_attr_orignal =[{'regular':'liabilities/assets','region':'USA','universe':'TOP3000',
+  set_alpha_attr_orignal =[{'regular':'liabilities/assets','region':'USA','universe':'TOP3000',
                             'delay':1,'decay':4,'truncation':0.8,'neutralization':'SUBINDUSTRY'}]
-  set_aphal_attr_df =st.data_editor(
-    pd.DataFrame(set_aphal_attr_orignal),
-    key="set_aphal_attr_editor",
+  set_alpha_attr_df =st.data_editor(
+    pd.DataFrame(set_alpha_attr_orignal),
+    key="set_alpha_attr_editor",
     hide_index=True,
     use_container_width=True,
     column_config={
@@ -173,13 +173,13 @@ def simulate_alpha():
         'decay': st.column_config.NumberColumn("decay", min_value=0),
         'truncation': st.column_config.NumberColumn("truncation", min_value=0,max_value=1,)
       }
-        )
-    set_aphal_attr_dict=set_aphal_attr_df.to_dict('records')
+  )
+    set_alpha_attr_dict=set_alpha_attr_df.to_dict('records')
     #get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
     #                                                  universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
     #                                                  dataset_id=filter_field_attr_dict['dataset_id'])
-    st.write('alpha setting count:', len(set_aphal_attr_dict))
-    st.write(pd.json_normalize(set_aphal_attr_dict))
+    st.write('alpha setting count:', len(set_alphal_attr_dict))
+    st.write(pd.json_normalize(set_alpha_attr_dict))
   
 
 
