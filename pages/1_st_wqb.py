@@ -27,7 +27,8 @@ import asyncio
 
 st.info('This is the basic intro of wqb\n\n-- connect to wqb\n\n-- simulate, filter, check')
 
-current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+# current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+current_time = datetime.now()
 st.write('Current time:',current_time)
 
 
