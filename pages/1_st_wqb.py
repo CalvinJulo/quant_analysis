@@ -40,7 +40,7 @@ for i in sessionState_List:
 
 # Username and password to WQB
 with st.sidebar:
-    with st.expander("Sign up"):
+    with st.expander("Log in"):
       st.session_state['sess_username'] = st.text_input('wqb username', 'xx')
       st.session_state['sess_password'] = st.text_input('wqb password', 'xx',type='password')
 
@@ -53,10 +53,31 @@ def get_wqb(username, password):
 wqbs =get_wqb(st.session_state['sess_username'], st.session_state['sess_password'])
 
 
-alpha_id = st.text_input('Alpha ID', '')
-alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
-st.write(alpha_id_data)
+
+sidebar_selectbox = st.sidebar.multiselect(
+    "Feature",
+    ("Check Field", "Filter Alphas", "Simulate Alphas")
+)
+
+def filter_alpha():
+  alpha_id = st.text_input('Alpha ID', '')
+  alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
+
+  show_alpha_data = st.radio(
+    "Alpha data",["alpha_data_json", "alpha_data_dataframe", "alpha_data_arrange"],)
+
+  if show_alpha_data =="alpha_data_json":
+    st.write(alpha_id_data)
+  elif show_alpha_data =="alpha_data_dataframe":
+    alpha_data_dataframe = pd.json_normalize(alpha_id_data)
+    st.write(alpha_data_dataframe.T)
 
 
+if "Check Field" in sidebar_selectbox:
+  st.write("Check Field")
+if "Filter Alphas" in sidebar_selectbox:
+  filter_alpha()
+if "Simulate Alphas" in sidebar_selectbox:
+  st.write("Simulate Alphas")
 
 
