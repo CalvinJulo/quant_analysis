@@ -30,6 +30,49 @@ def get_alpha_data(wqbs,alpha_id):
   resp_alpha_data = wqbs.locate_alpha(alpha_id,log=None)
   return resp_alpha_data.json()
 
+
+def filter_alphas(status='UNSUBMITTED',region='USA',universe='TOP3000',
+                  from_date='2025-01-28',to_date='2030-01-09',check='off'):
+    if check=='on':
+        sharpe=FilterRange.from_str('[1.58, inf)')
+        fitness = FilterRange.from_str('[1, inf)')
+        turnover = FilterRange.from_str('(-inf, 0.7]')
+    else:
+        sharpe=None
+        fitness =None
+        turnover=None
+
+    lo = datetime.fromisoformat(f'{from_date}T00:00:00-05:00')
+    hi = datetime.fromisoformat(f'{to_date}T00:00:00-05:00')
+    resps_filter_alphas_data = wqbs.filter_alphas(
+        status=status, # 'UNSUBMITTED','ACTIVE','DECOMMISSIONED'
+        region=region,
+        instrument_type=None,
+        delay=1,
+        universe=universe, # 'TOP3000, TOP1000, TOP500, Top200, TOPSP500'
+        decay =None,
+        neutralization=None,
+        truncation=None,
+        pasteurization=None,
+        sharpe=sharpe,
+        returns=None,
+        fitness=fitness,
+        turnover=turnover,
+        drawdown=None,
+        margin=None,
+        self_correlation=None,
+        date_created=FilterRange.from_str(f"[{lo.isoformat()}, {hi.isoformat()})"),
+        order='dateCreated',
+    )
+    data_list=[]
+    for resp in resps_filter_alphas_data:
+        # alpha_ids.extend(item['id'] for item in resp.json()['results'])
+        data_list.extend(resp.json()['results'])
+    # print('filter alpha num')
+    # print(len(data_list))
+    return data__list
+
+
 # dataset_id_list':'analyst4','model51','univ1','socialmedia8','fundamental2','fundamental6','model16','pv1','pv13','news12','news18','socialmedia12','option8','option9'
 
 def get_dataset_data(wqbs,dataset_id):
