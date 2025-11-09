@@ -21,6 +21,7 @@ import pandas as pd
 import streamlit as st
 from pages.common_lib import run_wqb
 import time
+from datetime import datetime
 
 
 st.info('This is the basic intro of wqb\n\n-- connect to wqb\n\n-- simulate, filter, check')
@@ -74,9 +75,35 @@ def filter_alpha():
     st.write(alpha_data_dataframe.T)
     st.write(pd.DataFrame(alpha_id_data['is']['checks']))
   elif show_alpha_data =="search_alpha":
-    get_multi_field_data=run_wqb.filter_alphas(wqbs=wqbs)
-    st.write('alpha count:',len(get_multi_field_data))
-    st.dataframe(pd.DataFrame(get_multi_field_data))
+
+    status='UNSUBMITTED',region='USA',universe='TOP3000',
+                  from_date=,to_date='2030-01-09',check='off'
+    
+    filter_alpha_attr_orignal =[{'status':'UNSUBMITTED','region':'USA','universe':'TOP3000','from_date':datetime(2025, 1, 28, 12, 30,0),'to_dat':datetime(2030, 1, 1, 12, 30,0),
+                                 'check':'off'}]
+    filter_alpha_attr_df =st.data_editor(
+      pd.DataFrame(filter_alpha_attr_orignal),
+      key="filter_alpha_attr_editor",
+      hide_index=True,
+      use_container_width=True,
+      num_rows="fixed",
+      column_config={
+        'status':st.column_config.SelectboxColumn("status",options=['UNSUBMITTED','ACTIVE','DECOMMISSIONED']),
+        'region':st.column_config.SelectboxColumn("region",options=["USA"]),
+        'check': st.column_config.SelectboxColumn("check", options=['off','on']),
+        'universe': st.column_config.SelectboxColumn("universe", options=[None,'TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
+        'from_date': st.column_config.DatetimeColumn("from_date",min_value=datetime(2023, 6, 1,0,0,0),max_value=datetime(2030, 1, 1,0,0,0)),
+        'to_date': st.column_config.DatetimeColumn("to_date",min_value=datetime(2023, 6, 1,0,0,0),max_value=datetime(2030, 1, 1,0,0,0)),   
+      }
+        )
+    filter_alpha_attr_dict=filter_alpha_attr_df.to_dict('records')[0]
+    get_multi_alpha_data=run_wqb.filter_alphas(wqbs=wqbs,region=filter_alpha_attr_dict['region'],status=filter_alpha_attr_dict['status'],
+                                               universe=filter_alpha_attr_dict['universe'],check=filter_alpha_attr_dict['check'],
+                                               from_date=filter_alpha_attr_dict['from_date'],to_date=filter_alpha_attr_dict['to_date'])
+    
+    st.write('alpha count:',len(get_multi_alpha_data))
+    st.write(pd.json_normalize(get_multi_alpha_data))
+
 
 
 
