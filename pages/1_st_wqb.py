@@ -104,7 +104,7 @@ def check_field():
     st.write(field_data_dataframe.T)
     st.write(pd.DataFrame(field_id_data['data']))
   elif show_field_data =="search_field":
-        filter_field_attr_orignal =[{'region':'USA','delay':1,'universe':'TOP3000','search':None,'dataset_id':None}]
+    filter_field_attr_orignal =[{'region':'USA','delay':1,'universe':'TOP3000','search':None,'dataset_id':None}]
     filter_field_attr_df =st.data_editor(
       pd.DataFrame(filter_field_attr_orignal),
       key="filter_field_attr_editor",
