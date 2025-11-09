@@ -176,7 +176,7 @@ def simulate_alpha():
       }
   )
   set_alpha_attr_dict=set_alpha_attr_df.to_dict('records')
-  #get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
+  # get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
     #                                                  universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
     #                                                  dataset_id=filter_field_attr_dict['dataset_id'])
   st.write('alpha setting count:', len(set_alpha_attr_dict))
