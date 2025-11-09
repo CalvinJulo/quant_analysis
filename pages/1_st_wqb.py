@@ -92,13 +92,13 @@ def filter_alpha():
         'status':st.column_config.SelectboxColumn("status",options=['UNSUBMITTED','ACTIVE','DECOMMISSIONED']),
         'region':st.column_config.SelectboxColumn("region",options=["USA"]),
         'check': st.column_config.SelectboxColumn("check", options=['off','on']),
-        'universe': st.column_config.SelectboxColumn("universe", options=[None,'TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
+        'universe': st.column_config.SelectboxColumn("universe", options=['TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
         'from_date': st.column_config.DatetimeColumn("from_date",min_value=datetime(2023, 6, 1,0,0,0),max_value=datetime(2030, 1, 1,0,0,0)),
         'to_date': st.column_config.DatetimeColumn("to_date",min_value=datetime(2023, 6, 1,0,0,0),max_value=datetime(2030, 1, 1,0,0,0)),   
       }
         )
     filter_alpha_attr_dict=filter_alpha_attr_df.to_dict('records')[0]
-    get_multi_alpha_data=run_wqb.filter_alphas(wqbs=wqbs,region=filter_alpha_attr_dict['region'],status=filter_alpha_attr_dict['status'],
+    get_multi_alpha_data=run_wqb.filter_alphas(wqbs=wqbs,status=filter_alpha_attr_dict['status'],region=filter_alpha_attr_dict['region'],
                                                universe=filter_alpha_attr_dict['universe'],check=filter_alpha_attr_dict['check'],
                                                from_date=filter_alpha_attr_dict['from_date'],to_date=filter_alpha_attr_dict['to_date'])
     
