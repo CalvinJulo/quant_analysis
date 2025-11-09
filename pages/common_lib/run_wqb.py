@@ -70,7 +70,7 @@ def filter_alphas(wqbs,status='UNSUBMITTED',region='USA',universe='TOP3000',
         data_list.extend(resp.json()['results'])
     # print('filter alpha num')
     # print(len(data_list))
-    return data__list
+    return data_list
 
 
 # dataset_id_list':'analyst4','model51','univ1','socialmedia8','fundamental2','fundamental6','model16','pv1','pv13','news12','news18','socialmedia12','option8','option9'
