@@ -31,8 +31,9 @@ def get_alpha_data(wqbs,alpha_id):
   return resp_alpha_data.json()
 
 
+
 def filter_alphas(wqbs,status='UNSUBMITTED',region='USA',universe='TOP3000',
-                  from_date='2025-01-28',to_date='2030-01-09',check='off'):
+                  from_date=datetime(2025, 1, 28, 12, 30,0),to_date=datetime(2030, 1, 1, 12, 30,0):
     if check=='on':
         sharpe=FilterRange.from_str('[1.58, inf)')
         fitness = FilterRange.from_str('[1, inf)')
@@ -42,8 +43,8 @@ def filter_alphas(wqbs,status='UNSUBMITTED',region='USA',universe='TOP3000',
         fitness =None
         turnover=None
 
-    lo = datetime.fromisoformat(f'{from_date}T00:00:00-05:00')
-    hi = datetime.fromisoformat(f'{to_date}T00:00:00-05:00')
+    lo = datetime.fromisoformat(from_date.strftime('%Y-%m-%dT%H:%M:%S%z-05:00'))
+    hi = datetime.fromisoformat(to_date.strftime('%Y-%m-%dT%H:%M:%S%z-05:00'))
     resps_filter_alphas_data = wqbs.filter_alphas(
         status=status, # 'UNSUBMITTED','ACTIVE','DECOMMISSIONED'
         region=region,
