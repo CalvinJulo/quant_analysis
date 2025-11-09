@@ -83,7 +83,7 @@ def check_field():
   elif show_dataset_data =="dataset_data_dataframe":
     dataset_data_dataframe = pd.json_normalize(dataset_id_data)
     st.write(dataset_data_dataframe.T)
-    st.write(pd.DataFrame(dataset_id_data['dataset_data']))
+    st.write(pd.DataFrame(dataset_id_data['data']))
     st.write(pd.DataFrame(dataset_id_data['researchPapers']))
     
   # field  
