@@ -37,8 +37,6 @@ def get_dataset_data(wqbs,dataset_id):
   resp_dataset_data= wqbs.locate_dataset(dataset_id)
   return resp_dataset_data.json()
 
-
-
 def get_field_data(wqbs,field_id):
   resp_field_data= wqbs.locate_field(field_id)
   return resp_field_data.json()
