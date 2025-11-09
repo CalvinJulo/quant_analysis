@@ -75,7 +75,7 @@ def filter_alpha():
     st.write(pd.DataFrame(alpha_id_data['is']['checks']))
   elif show_alpha_data =="search_alpha":
     get_multi_field_data=run_wqb.filter_alphas(wqbs=wqbs)
-    st.write('alpha count:',len(get_multi_field_data)))
+    st.write('alpha count:',len(get_multi_field_data))
     st.dataframe(pd.DataFrame(get_multi_field_data))
 
 
