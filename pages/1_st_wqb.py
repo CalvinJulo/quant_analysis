@@ -75,6 +75,7 @@ def filter_alpha():
     st.write(pd.DataFrame(alpha_id_data['is']['checks']))
   elif show_alpha_data =="search_alpha":
     get_multi_field_data=run_wqb.filter_alphas(wqbs=wqbs)
+    st.write('alpha count:',len(get_multi_field_data)))
     st.dataframe(pd.DataFrame(get_multi_field_data))
 
 
@@ -124,7 +125,7 @@ def check_field():
     get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
                                                       universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
                                                       dataset_id=filter_field_attr_dict['dataset_id'])
-    st.write('count:', len(get_multi_field_data))
+    st.write('field count:', len(get_multi_field_data))
     st.write(pd.json_normalize(get_multi_field_data))
 
 
