@@ -14,14 +14,14 @@ from re import search
 
 import wqb
 from wqb import WQBSession, FilterRange
-import asyncio
-from datetime import datetime
-import logging
-logger = wqb.wqb_logger()
+# import asyncio
+# from datetime import datetime
+# import logging
 
 
 
 def log_wqbs(username, password):
+  logger = wqb.wqb_logger()
   wqbs = WQBSession((username, password), logger=logger)
 
 
