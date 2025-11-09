@@ -66,7 +66,7 @@ def filter_alpha():
   alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
 
   show_alpha_data = st.radio(
-    "Alpha data",[ "alpha_data_dataframe", "alpha_data_json","alpha_data_arrange"],horizontal=True)
+    "Alpha data",[ "alpha_data_dataframe", "alpha_data_json","search_alpha"],horizontal=True)
   if show_alpha_data =="alpha_data_json":
     st.write(alpha_id_data)
   elif show_alpha_data =="alpha_data_dataframe":
@@ -90,8 +90,21 @@ def check_field():
     st.write(dataset_data_dataframe.T)
     st.write(pd.DataFrame(dataset_id_data['data']))
     st.write(pd.DataFrame(dataset_id_data['researchPapers']))
-  elif show_dataset_data =="dataset_data_arrange":
-    filter_field_attr_orignal =[{'region':'USA','delay':1,'universe':'TOP3000','search':None,'dataset_id':None}]
+    
+  # field 
+  st.write('## Field')
+  field_id = st.text_input('field id', '')
+  field_id_data= run_wqb.get_field_data(wqbs, field_id)
+  show_field_data = st.radio(
+    "Field data",[ "field_data_dataframe","field_data_json", "search_field"],horizontal=True)
+  if show_field_data =="field_data_json":
+    st.write(field_id_data)
+  elif show_field_data =="field_data_dataframe":
+    field_data_dataframe = pd.json_normalize(field_id_data)
+    st.write(field_data_dataframe.T)
+    st.write(pd.DataFrame(field_id_data['data']))
+  elif show_field_data =="search_field":
+        filter_field_attr_orignal =[{'region':'USA','delay':1,'universe':'TOP3000','search':None,'dataset_id':None}]
     filter_field_attr_df =st.data_editor(
       pd.DataFrame(filter_field_attr_orignal),
       key="filter_field_attr_editor",
@@ -109,19 +122,6 @@ def check_field():
                                                       dataset_id=filter_field_attr_dict['dataset_id'])
     st.write('count:', len(get_multi_field_data))
     st.dataframe(pd.DataFrame(get_multi_field_data))
-    
-  # field 
-  st.write('## Field')
-  field_id = st.text_input('field id', '')
-  field_id_data= run_wqb.get_field_data(wqbs, field_id)
-  show_field_data = st.radio(
-    "Field data",[ "field_data_dataframe","field_data_json", "field_data_arrange"],horizontal=True)
-  if show_field_data =="field_data_json":
-    st.write(field_id_data)
-  elif show_field_data =="field_data_dataframe":
-    field_data_dataframe = pd.json_normalize(field_id_data)
-    st.write(field_data_dataframe.T)
-    st.write(pd.DataFrame(field_id_data['data']))
 
 
 
