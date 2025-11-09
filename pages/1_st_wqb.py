@@ -79,7 +79,8 @@ def filter_alpha():
     status='UNSUBMITTED',region='USA',universe='TOP3000',
                   from_date=,to_date='2030-01-09',check='off'
     
-    filter_alpha_attr_orignal =[{'status':'UNSUBMITTED','region':'USA','universe':'TOP3000','from_date':datetime(2025, 1, 28, 12, 30,0),'to_dat':datetime(2030, 1, 1, 12, 30,0),
+    filter_alpha_attr_orignal =[{'status':'UNSUBMITTED','region':'USA','universe':'TOP3000',
+                                 'from_date':datetime(2025, 1, 28, 12, 30,0),'to_date':datetime(2030, 1, 1, 12, 30,0),
                                  'check':'off'}]
     filter_alpha_attr_df =st.data_editor(
       pd.DataFrame(filter_alpha_attr_orignal),
@@ -96,6 +97,14 @@ def filter_alpha():
         'to_date': st.column_config.DatetimeColumn("to_date",min_value=datetime(2023, 6, 1,0,0,0),max_value=datetime(2030, 1, 1,0,0,0)),   
       }
         )
+    filter_alpha_attr_dict=filter_alpha_attr_df.to_dict('records')[0]
+    get_multi_alpha_data=run_wqb.filter_alphas(wqbs=wqbs,region=filter_alpha_attr_dict['region'],status=filter_alpha_attr_dict['status'],
+                                               universe=filter_alpha_attr_dict['universe'],check=filter_alpha_attr_dict['check'],
+                                               from_date=filter_alpha_attr_dict['from_date'],to_date=filter_alpha_attr_dict['to_date'])
+    
+    st.write('alpha count:',len(get_multi_alpha_data))
+    st.write(pd.json_normalize(get_multi_alpha_data))
+
 
 
 
