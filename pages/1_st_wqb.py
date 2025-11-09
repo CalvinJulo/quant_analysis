@@ -108,6 +108,8 @@ def filter_alpha():
 def check_field():
   # dataset
   st.write('## Dataset')
+  dataset_id_list=['analyst4','model51','univ1','socialmedia8','fundamental2','fundamental6','model16','pv1','pv13','news12','news18','socialmedia12','option8','option9']
+  
   dataset_id = st.text_input('Dataset id', '')
   dataset_id_data= run_wqb.get_dataset_data(wqbs, dataset_id)
 
@@ -125,8 +127,7 @@ def check_field():
   st.write('## Field')
   field_id = st.text_input('field id', '')
   field_id_data= run_wqb.get_field_data(wqbs, field_id)
-  show_field_data = st.radio(
-    "Field data",[ "field_data_dataframe","field_data_json", "search_field"],horizontal=True)
+  show_field_data = st.radio("Field data",[ "field_data_dataframe","field_data_json", "search_field","field_info"],horizontal=True)
   if show_field_data =="field_data_json":
     st.write(field_id_data)
   elif show_field_data =="field_data_dataframe":
@@ -155,11 +156,39 @@ def check_field():
 
 
 
+def simulate_alpha():
+  st.write('Simulate Alpha')
+  regular='liabilities/assets',universe='TOP3000',decay=4,
+              neutralization='SUBINDUSTRY',truncation=0.08, delay=1
+  set_aphal_attr_orignal =[{'regular':'liabilities/assets','region':'USA','universe':'TOP3000',,'delay':1,'decay':4,'truncation':0.8,'neutralization':'SUBINDUSTRY'}]
+    set_aphal_attr_df =st.data_editor(
+      pd.DataFrame(set_aphal_attr_orignal),
+      key="set_aphal_attr_editor",
+      hide_index=True,
+      use_container_width=True,
+      column_config={
+        'region':st.column_config.SelectboxColumn("region",options=["USA"]),
+        'delay': st.column_config.SelectboxColumn("delay", options=[1,0]),
+        'universe': st.column_config.SelectboxColumn("universe", options=['TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
+        'neutralization': st.column_config.SelectboxColumn("universe", options=['SUBINDUSTRY','NONE', 'MARKET', 'SECTOR', 'INDUSTRY' ]),
+        'decay': st.column_config.NumberColumn("decay", min_value=0),
+        'truncation': st.column_config.NumberColumn("truncation", min_value=0,max_value=1,)
+      }
+        )
+    set_aphal_attr_dict=set_aphal_attr_df.to_dict('records')
+    #get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
+    #                                                  universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
+    #                                                  dataset_id=filter_field_attr_dict['dataset_id'])
+    st.write('alpha setting count:', len(set_aphal_attr_dict))
+    st.write(pd.json_normalize(set_aphal_attr_dict))
+  
+
+
 if "Check Field" in sidebar_selectbox:
   check_field()
 if "Filter Alphas" in sidebar_selectbox:
   filter_alpha()
 if "Simulate Alphas" in sidebar_selectbox:
-  st.write("Simulate Alphas")
+  simulate_alpha()
 
 
