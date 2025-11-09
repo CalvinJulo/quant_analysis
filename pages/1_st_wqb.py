@@ -198,10 +198,13 @@ def simulate_alpha():
               on_finish=lambda vars: print('finish',vars['resp']),
               # on_success=lambda vars: print('success',vars['resp']),
               on_failure=lambda vars: print('failure',vars['resp']),))
-          spend_time =current_time-simulate_start_time
+          st.write(resp_alpha.json())
+          st.write(simulate_start_time)
+          st.write(current_time)
+          spend_time =current_time - simulate_start_time
           st.write(spend_time)
           status_code =resp_alpha.status_code
-          st.write(resp_alpha.json())
+          
 
   
 
