@@ -40,8 +40,9 @@ for i in sessionState_List:
 
 # Username and password to WQB
 with st.sidebar:
-    st.session_state['sess_username'] = st.text_input('username', 'xx')
-    st.session_state['sess_password'] = st.text_input('password', 'xx',type='password')
+    with st.expander("Sign up"):
+      st.session_state['sess_username'] = st.text_input('wqb username', 'xx')
+      st.session_state['sess_password'] = st.text_input('wqb password', 'xx',type='password')
 
 
 @st.cache_resource
