@@ -158,13 +158,14 @@ def check_field():
 
 def simulate_alpha():
   st.write('Simulate Alpha')
-  set_aphal_attr_orignal =[{'regular':'liabilities/assets','region':'USA','universe':'TOP3000',,'delay':1,'decay':4,'truncation':0.8,'neutralization':'SUBINDUSTRY'}]
-    set_aphal_attr_df =st.data_editor(
-      pd.DataFrame(set_aphal_attr_orignal),
-      key="set_aphal_attr_editor",
-      hide_index=True,
-      use_container_width=True,
-      column_config={
+  set_aphal_attr_orignal =[{'regular':'liabilities/assets','region':'USA','universe':'TOP3000',
+                            'delay':1,'decay':4,'truncation':0.8,'neutralization':'SUBINDUSTRY'}]
+  set_aphal_attr_df =st.data_editor(
+    pd.DataFrame(set_aphal_attr_orignal),
+    key="set_aphal_attr_editor",
+    hide_index=True,
+    use_container_width=True,
+    column_config={
         'region':st.column_config.SelectboxColumn("region",options=["USA"]),
         'delay': st.column_config.SelectboxColumn("delay", options=[1,0]),
         'universe': st.column_config.SelectboxColumn("universe", options=['TOP3000', 'TOP1000', 'TOP500', 'Top200', 'TOPSP500']),
