@@ -174,12 +174,12 @@ def simulate_alpha():
         'truncation': st.column_config.NumberColumn("truncation", min_value=0,max_value=1,)
       }
   )
-    set_alpha_attr_dict=set_alpha_attr_df.to_dict('records')
-    #get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
+  set_alpha_attr_dict=set_alpha_attr_df.to_dict('records')
+  #get_multi_field_data=run_wqb.get_multi_field_data(wqbs=wqbs,region=filter_field_attr_dict['region'],delay=filter_field_attr_dict['delay'],
     #                                                  universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
     #                                                  dataset_id=filter_field_attr_dict['dataset_id'])
-    st.write('alpha setting count:', len(set_alphal_attr_dict))
-    st.write(pd.json_normalize(set_alpha_attr_dict))
+  st.write('alpha setting count:', len(set_alpha_attr_dict))
+  st.write(pd.json_normalize(set_alpha_attr_dict))
   
 
 
