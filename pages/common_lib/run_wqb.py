@@ -41,7 +41,7 @@ def get_field_data(wqbs,field_id):
   return resp_field_data.json()
 
 
-def get_multi_field_data(wqbs=wqbs,region='USA',delay=1,universe='TOP3000',search=None,dataset_id=None,category=None):
+def get_multi_field_data(wqbs,region='USA',delay=1,universe='TOP3000',search=None,dataset_id=None,category=None):
     resp_multi_field_data = wqbs.search_fields(
       region=region, #'USA'
       delay=delay, # 0,1
