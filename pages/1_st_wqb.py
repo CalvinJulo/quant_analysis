@@ -22,6 +22,7 @@ import streamlit as st
 from pages.common_lib import run_wqb
 import time
 from datetime import datetime
+import asyncio
 
 
 st.info('This is the basic intro of wqb\n\n-- connect to wqb\n\n-- simulate, filter, check')
