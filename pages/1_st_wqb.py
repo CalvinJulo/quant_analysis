@@ -60,6 +60,8 @@ sidebar_selectbox = st.sidebar.multiselect(
 )
 
 def filter_alpha():
+
+  st.write('## Alpha')
   alpha_id = st.text_input('Alpha id', '')
   alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
 
@@ -73,6 +75,7 @@ def filter_alpha():
 
 def check_field():
   # dataset
+  st.write('## Dataset')
   dataset_id = st.text_input('Dataset id', '')
   dataset_id_data= run_wqb.get_dataset_data(wqbs, dataset_id)
 
@@ -86,7 +89,8 @@ def check_field():
     st.write(pd.DataFrame(dataset_id_data['data']))
     st.write(pd.DataFrame(dataset_id_data['researchPapers']))
     
-  # field  
+  # field 
+  st.write('## Field')
   field_id = st.text_input('field id', '')
   field_id_data= run_wqb.get_field_data(wqbs, field_id)
   show_field_data = st.radio(
