@@ -44,7 +44,7 @@ def get_wqb(username, password):
 wqbs =get_wqb(username, password)
 
 alpha_id = st.text_input('Alpha ID', '')
-alpha_id_data= run_wqb.get_alpha_data(alpha_id)
+alpha_id_data= run_wqb.get_alpha_data(alpha_id, alpha_id)
 st.write(alpha_id_data)
 
 
