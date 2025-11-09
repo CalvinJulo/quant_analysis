@@ -185,8 +185,9 @@ def simulate_alpha():
   if st.button('simulate'):
         for i in set_alpha_attr_dict:
           st.write(i)
-          #alpha_setting_data = run_wqb.set_alpha(regular=i['regular'],region=i['region'],universe=i['universe'],delay=i['delay'],decay=i['decay'],truncation=i['truncation'],neutralization=i['neutralization'])
-          #st.write(alpha_setting_data)
+          alpha_setting_data = run_wqb.set_alpha(regular=i['regular'],region=i['region'],universe=i['universe'],
+                                                 delay=i['delay'],decay=i['decay'],truncation=i['truncation'],neutralization=i['neutralization'])
+          st.write(alpha_setting_data)
 
   
 
