@@ -64,7 +64,7 @@ def filter_alpha():
   alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
 
   show_alpha_data = st.radio(
-    "Alpha data",["alpha_data_json", "alpha_data_dataframe", "alpha_data_arrange"],)
+    "Alpha data",["alpha_data_json", "alpha_data_dataframe", "alpha_data_arrange"],horizontal=True)
 
   if show_alpha_data =="alpha_data_json":
     st.write(alpha_id_data)
