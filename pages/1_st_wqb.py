@@ -75,10 +75,6 @@ def filter_alpha():
     st.write(alpha_data_dataframe.T)
     st.write(pd.DataFrame(alpha_id_data['is']['checks']))
   elif show_alpha_data =="search_alpha":
-
-    status='UNSUBMITTED',region='USA',universe='TOP3000',
-                  from_date=,to_date='2030-01-09',check='off'
-    
     filter_alpha_attr_orignal =[{'status':'UNSUBMITTED','region':'USA','universe':'TOP3000',
                                  'from_date':datetime(2025, 1, 28, 12, 30,0),'to_date':datetime(2030, 1, 1, 12, 30,0),
                                  'check':'off'}]
