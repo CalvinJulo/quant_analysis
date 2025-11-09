@@ -24,6 +24,7 @@ def log_wqbs(username, password):
   # logger = wqb.wqb_logger()
   # wqbs = WQBSession((username, password), logger=logger)
   wqbs = WQBSession((username, password))
+  return wqbs
 
 def get_alpha_data(alpha_id):
     resp_alpha_data_one_id = wqbs.locate_alpha(alpha_id,log=None)
