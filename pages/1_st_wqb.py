@@ -73,6 +73,10 @@ def filter_alpha():
     alpha_data_dataframe = pd.json_normalize(alpha_id_data)
     st.write(alpha_data_dataframe.T)
     st.write(pd.DataFrame(alpha_id_data['is']['checks']))
+  elif show_alpha_data =="search_alpha":
+    get_multi_field_data=run_wqb.filter_alphas(wqbs=wqbs)
+    st.dataframe(pd.DataFrame(get_multi_field_data))
+
 
 
 def check_field():
