@@ -72,6 +72,8 @@ def filter_alpha():
   elif show_alpha_data =="alpha_data_dataframe":
     alpha_data_dataframe = pd.json_normalize(alpha_id_data)
     st.write(alpha_data_dataframe.T)
+    st.write(pd.DataFrame(alpha_id_data['is']['checks']))
+
 
 def check_field():
   # dataset
