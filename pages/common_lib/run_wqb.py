@@ -10,4 +10,24 @@
 """
 # CMD Run Command ： streamlit run /Users/xx.py --server.port 8501
 
-import pandas as pd
+from re import search
+
+import wqb
+from wqb import WQBSession, FilterRange
+import asyncio
+from datetime import datetime
+import logging
+logger = wqb.wqb_logger()
+
+
+
+def log_wqbs(username, password):
+  wqbs = WQBSession((username, password), logger=logger)
+
+
+def get_alpha_data(alpha_id):
+    resp_alpha_data_one_id = wqbs.locate_alpha(alpha_id,log=None)
+    return resp_alpha_data_one_id.json()
+
+
+
