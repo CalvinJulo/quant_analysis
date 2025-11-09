@@ -27,8 +27,21 @@ def log_wqbs(username, password):
   return wqbs
 
 def get_alpha_data(wqbs,alpha_id):
-    resp_alpha_data_one_id = wqbs.locate_alpha(alpha_id,log=None)
-    return resp_alpha_data_one_id.json()
+  resp_alpha_data = wqbs.locate_alpha(alpha_id,log=None)
+  return resp_alpha_data.json()
+
+
+# dataset_id_list':'analyst4','model51','univ1','socialmedia8','fundamental2','fundamental6','model16','pv1','pv13','news12','news18','socialmedia12','option8','option9'
+
+def get_dataset_data(wqbs,dataset_id):
+  resp_dataset_data= wqbs.locate_dataset(dataset_id)
+  return resp_dataset_data.json()
+
+
+
+def get_field_data(wqbs,field_id):
+  resp_field_data= wqbs.locate_field(field_id)
+  return resp_field_data.json()
 
 
 
