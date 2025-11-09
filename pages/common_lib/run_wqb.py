@@ -112,7 +112,7 @@ def get_multi_field_data(wqbs,region='USA',delay=1,universe='TOP3000',search=Non
     return data_list
 
 
-def simulate_one_alpha(alpha):
+def simulate_one_alpha(wqbs,alpha):
     resp_alpha = asyncio.run(
         wqbs.simulate(
             alpha,  # `alpha` or `multi_alpha`
