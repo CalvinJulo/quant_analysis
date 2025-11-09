@@ -158,8 +158,6 @@ def check_field():
 
 def simulate_alpha():
   st.write('Simulate Alpha')
-  regular='liabilities/assets',universe='TOP3000',decay=4,
-              neutralization='SUBINDUSTRY',truncation=0.08, delay=1
   set_aphal_attr_orignal =[{'regular':'liabilities/assets','region':'USA','universe':'TOP3000',,'delay':1,'decay':4,'truncation':0.8,'neutralization':'SUBINDUSTRY'}]
     set_aphal_attr_df =st.data_editor(
       pd.DataFrame(set_aphal_attr_orignal),
