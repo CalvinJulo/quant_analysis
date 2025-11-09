@@ -164,7 +164,8 @@ def simulate_alpha():
     pd.DataFrame(set_alpha_attr_orignal),
     key="set_alpha_attr_editor",
     # hide_index=True,
-    # use_container_width=True,
+    use_container_width=True,
+    num_rows="dynamic",
     column_config={
         'region':st.column_config.SelectboxColumn("region",options=["USA"]),
         'delay': st.column_config.SelectboxColumn("delay", options=[1,0]),
