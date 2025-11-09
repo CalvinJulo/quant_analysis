@@ -14,7 +14,7 @@ from re import search
 
 import wqb
 from wqb import WQBSession, FilterRange
-# import asyncio
+import asyncio
 from datetime import datetime
 # import logging
 
@@ -74,7 +74,7 @@ def filter_alphas(wqbs,status='UNSUBMITTED',region='USA',universe='TOP3000',
     return data_list
 
 
-# dataset_id_list':'analyst4','model51','univ1','socialmedia8','fundamental2','fundamental6','model16','pv1','pv13','news12','news18','socialmedia12','option8','option9'
+dataset_id_list=['analyst4','model51','univ1','socialmedia8','fundamental2','fundamental6','model16','pv1','pv13','news12','news18','socialmedia12','option8','option9']
 
 def get_dataset_data(wqbs,dataset_id):
   resp_dataset_data= wqbs.locate_dataset(dataset_id)
@@ -112,3 +112,41 @@ def get_multi_field_data(wqbs,region='USA',delay=1,universe='TOP3000',search=Non
     return data_list
 
 
+def simulate_one_alpha(alpha):
+    resp_alpha = asyncio.run(
+        wqbs.simulate(
+            alpha,  # `alpha` or `multi_alpha`
+            on_nolocation=lambda vars: print('nolocation',vars['target'], vars['resp'], sep='\n'),
+            on_start=lambda vars: print('start',alpha,vars['url']),
+            on_finish=lambda vars: print('finish',vars['resp']),
+            # on_success=lambda vars: print('success',vars['resp']),
+            on_failure=lambda vars: print('failure',vars['resp']),
+        )
+    )
+    status_code =resp_alpha.status_code
+    # print(status_code)
+    # print(resp_alpha.json())
+    return resp_alpha.json()
+
+
+def set_alpha(regular='liabilities/assets',universe='TOP3000',decay=4,
+              neutralization='SUBINDUSTRY',truncation=0.08, delay=1):
+    alpha_setting = {
+        'type': 'REGULAR',
+        'settings': {
+            'instrumentType': 'EQUITY',
+            'region': 'USA',
+            'universe': universe, # 'TOP3000', 'TOP1000', 'TOP500', 'TOP200', 'TOPSP500'
+            'delay': delay, # [0, 1]
+            'decay': decay, # [0, 4, 10]
+            'neutralization':neutralization , # 'NONE', 'MARKET', 'SECTOR', 'INDUSTRY', 'SUBINDUSTRY'
+            'truncation': truncation, ## [0.01, 0.08]
+            'pasteurization': 'ON',
+            'unitHandling': 'VERIFY',
+            'nanHandling': 'OFF',
+            'language': 'FASTEXPR',
+            'visualization': False
+        },
+        'regular': regular,
+    }
+    return alpha_setting
