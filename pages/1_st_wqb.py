@@ -60,21 +60,44 @@ sidebar_selectbox = st.sidebar.multiselect(
 )
 
 def filter_alpha():
-  alpha_id = st.text_input('Alpha ID', '')
+  alpha_id = st.text_input('Alpha id', '')
   alpha_id_data= run_wqb.get_alpha_data(wqbs, alpha_id)
 
   show_alpha_data = st.radio(
     "Alpha data",["alpha_data_json", "alpha_data_dataframe", "alpha_data_arrange"],horizontal=True)
-
   if show_alpha_data =="alpha_data_json":
     st.write(alpha_id_data)
   elif show_alpha_data =="alpha_data_dataframe":
     alpha_data_dataframe = pd.json_normalize(alpha_id_data)
     st.write(alpha_data_dataframe.T)
 
+def check_field():
+  # dataset
+  dataset_id = st.text_input('Dataset id', '')
+  dataset_id_data= run_wqb.get_dataset_data(wqbs, dataset_id)
+
+  show_dataset_data = st.radio(
+    "Dataset data",["dataset_data_json", "dataset_data_dataframe", "dataset_data_arrange"],horizontal=True)
+  if show_dataset_data =="dataset_data_json":
+    st.write(dataset_id_data)
+  elif show_dataset_data =="dataset_data_dataframe":
+    dataset_data_dataframe = pd.json_normalize(dataset_id_data)
+    st.write(dataset_data_dataframe.T)
+    
+  # field  
+  field_id = st.text_input('field id', '')
+  field_id_data= run_wqb.get_field_data(wqbs, field_id)
+  show_field_data = st.radio(
+    "Field data",["field_data_json", "field_data_dataframe", "field_data_arrange"],horizontal=True)
+  if show_field_data =="field_data_json":
+    st.write(field_id_data)
+  elif show_field_data =="field_data_dataframe":
+    field_data_dataframe = pd.json_normalize(field_id_data)
+    st.write(field_data_dataframe.T)
+
 
 if "Check Field" in sidebar_selectbox:
-  st.write("Check Field")
+  check_field()
 if "Filter Alphas" in sidebar_selectbox:
   filter_alpha()
 if "Simulate Alphas" in sidebar_selectbox:
