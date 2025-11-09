@@ -125,7 +125,7 @@ def check_field():
                                                       universe=filter_field_attr_dict['universe'],search=filter_field_attr_dict['search'],
                                                       dataset_id=filter_field_attr_dict['dataset_id'])
     st.write('count:', len(get_multi_field_data))
-    st.dataframe(pd.DataFrame(get_multi_field_data))
+    st.write(pd.json_normalize(get_multi_field_data))
 
 
 
