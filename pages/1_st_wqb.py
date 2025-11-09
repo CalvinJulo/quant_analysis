@@ -31,8 +31,8 @@ st.write('Current time:',current_time)
 
 # Username and password from MongoDB Altas
 with st.sidebar:
-    Username = st.text_input('Username', 'xx')
-    Password = st.text_input('password', 'xx')
+    username = st.text_input('username', 'xx')
+    password = st.text_input('password', 'xx')
 
 
 @st.cache_resource
