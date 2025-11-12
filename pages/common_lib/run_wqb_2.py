@@ -65,7 +65,7 @@ def simulate_alpha(session,alpha):
         if retry_after==0:
             sleep(3)
             alpha_id = sim_get_resp.json()["alpha"]  # the final simulation result
-            alpha_data = get_one_alpha_data(alpha_id)
+            alpha_data = get_one_alpha_data(session=session,alpha_id=alpha_id)
             break
         sleep(retry_after)
     cost_time = datetime.now()-start_time
