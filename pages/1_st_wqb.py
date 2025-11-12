@@ -48,7 +48,7 @@ with st.sidebar:
       st.session_state['sess_password'] = st.text_input('wqb password', 'xx',type='password')
 
 
-@st.cache_resource
+@st.cache_data
 def get_wqb(username, password):
   wqbs = run_wqb.log_wqbs(username, password)
   return wqbs
@@ -204,9 +204,6 @@ def simulate_alpha():
           st.write('spend time:',simulate_finish_time-simulate_start_time)
           status_code =resp_alpha.status_code
           
-
-  
-
 
 if "Check Field" in sidebar_selectbox:
   check_field()
